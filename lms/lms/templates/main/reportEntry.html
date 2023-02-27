@@ -1,0 +1,83 @@
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      {% endif %}
+
+
+      {% if success %}
+      <div class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+
+      {% endif %}
+
+    <div class="studentId">
+        <label for="" class="font-weight-bold">Select Student</label> <br>
+        <select name="user" class="form-select form-select-lg mb-3 p-2 w-100" onchange="filterUser(this.options[this.selectedIndex].value)"
+            aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            {% for user in users %}
+            <option value="{{user.id}}">{{user}}</option>
+            {% endfor %}
+        </select>
+
+        <div id="user-data" class="d-none">
+            {% for user in users %}
+            <div id="user_{{user.id}}">
+                <div class="username">{{user}}</div>
+                <div class="first_name">
+                    {{user.first_name}}
+                </div>
+                <div class="last_name">
+                    {{user.last_name}}
+                </div>
+                <div class="user_email">
+                    {{user.email}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+
+            <div id="name" class="col-lg-6">
+                <label for="" class="font-weight-bold">Name</label>
+                <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled
+                    readonly />
+            </div>
+
+            <div id="email" class="col-lg-6">
+                <label for="" class="font-weight-bold">Email</label>
+                <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled
+                    readonly />
+            </div>
+        </div>
+
+        <div class="books mt-4">
+            <label for="" class="font-weight-bold">Book Name</label> <br>
+            <select name="currentBook" class="form-select p-2 w-100" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                {% for book in books %}
+                <option value="{{book.bookId}}">{{book.bookName}}</option>
+                {% endfor %}
+              </select>
+        </div>
+
+        <div class="returnDate mt-4">
+            <label for="" class="font-weight-bold">Return Date</label> <br>
+            <input type="date" class="w-100 p-2" name="return_date" id="return_date">
+        </div>
+
+        
+
+        <div class="mt-4">
+            <input type="submit" name="entry_record" value="Save Record">
+        </div>
+
+        
+    </div>
+</form>

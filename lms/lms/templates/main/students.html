@@ -1,0 +1,24 @@
+<h2 class="mb-3">Logistics Details</h2>
+
+
+
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">S.N.</th>
+      <th scope="col">StudentId</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Student Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in users %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.id}}</td>
+      <td>{{data.first_name}} {{data.last_name}}</td>
+      <td>{{data.email}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

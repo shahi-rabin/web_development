@@ -1,0 +1,28 @@
+
+<h2 class="mb-3">Book List</h2>
+
+<table class="table caption-top">
+    <thead>
+      <tr>
+        <th scope="col">Book Id</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Author Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in books %}
+      <tr>
+      <th scope="row">{{data.bookId}}</th>
+        <td>{{data.bookName}}</td>
+        <td>{{data.authorName}}</td>
+        <td>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="trigger" value="{{data.bookId}}">
+            <button type="submit" name="delete_book" class="btn btn-danger">Delete Book</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

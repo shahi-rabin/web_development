@@ -1,0 +1,3 @@
+- psuh all the code to github
+- presentation planning
+- test completion

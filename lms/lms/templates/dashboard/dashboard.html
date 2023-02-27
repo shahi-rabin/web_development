@@ -1,0 +1,146 @@
+
+{% extends 'base.html' %}
+
+<!-- css block -->
+{% block style %}
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+@media (max-width: 991.98px) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 56px; /* Height of navbar */
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #343a40;
+    transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+  }
+  .offcanvas-collapse.open {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  color: rgba(255, 255, 255, .75);
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .nav-link {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .875rem;
+  color: #6c757d;
+}
+
+.nav-underline .nav-link:hover {
+  color: #007bff;
+}
+
+.nav-underline .active {
+  font-weight: 500;
+  color: #343a40;
+}
+
+.bg-purple {
+  background-color: #6f42c1;
+}
+</style>
+
+ {%endblock%}
+
+{% block main %} 
+
+{% include 'navbar.html' %}
+
+
+  <!-- secondary navbar -->
+  <div class="nav-scroller bg-body shadow-sm">
+    <nav class="nav nav-underline" aria-label="Secondary navigation">
+      <a class="nav-link active" aria-current="page" href="#">{{user}}</a>
+      <a class="nav-link tab-link" href="#profile">Profile</a>
+      <a class="nav-link tab-link" href="#logistics">Logistics</a>
+      <!-- <a class="nav-link tab-link" href="#report">Report</a> -->
+      <!-- <a class="nav-link tab-link" href="#books">Books</a> -->
+      <a class="nav-link tab-link" href="#settings">Settings</a>
+      <a class="nav-link tab-link" href="accounts/logout/">Logout</a>
+      <!-- <a class="nav-link" href="#">My Requests</a>
+      <a class="nav-link" href="#">Reports</a> -->
+    </nav>
+  </div>
+
+  <div class="dash p-5">
+      <div id="profile" class="tab">
+          {% include 'dashboard/profile.html' %}
+      </div>
+      <div id="logistics" class="tab" style="display:none;">
+          {% include 'dashboard/logistics.html' %}
+      </div>
+      <div id="books" class="tab" style="display:none;">
+          
+      </div>
+      <div id="settings" class="tab" style="display:none;">
+          
+      </div>
+  </div>
+
+  
+  <script>
+      (function () {
+  'use strict'
+
+  document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+    document.querySelector('.offcanvas-collapse').classList.toggle('open')
+  })
+})()
+  </script>
+
+{%endblock%}
+
+
+{% block js %}
+<script>
+    $(function(){
+        $(".tab-link").click(function(){ 
+           currentTab =  $(this).attr('href');
+           $('.tab').hide()
+           $(currentTab).show()
+        })
+    })
+</script>
+{% endblock %}

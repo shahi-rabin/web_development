@@ -1,0 +1,33 @@
+<h2 class="mb-3">Logistics Details</h2>
+
+
+
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">S.N.</th>
+      <th scope="col">StudentId</th>
+      <th scope="col">Name of Books</th>
+      <th scope="col">Borrow Date</th>
+      <th scope="col">Return Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in reports %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.studentId}}</td>
+      <td>{{data.bookName}}</td>
+      <td>{{data.borrowDate}}</td>
+      <td>{{data.ReturnDate}}</td>
+      <td>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="trigger" value="{{data.id}}">
+          <button type="submit" name="delete" class="btn btn-danger">Delete Record</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

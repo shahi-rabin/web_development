@@ -1,0 +1,24 @@
+<h2 class="mb-3">Logistics Details</h2>
+
+
+
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">S.N.</th>
+      <th scope="col">Name of Books</th>
+      <th scope="col">Borrow Date</th>
+      <th scope="col">Return Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in logistics %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.bookName}}</td>
+      <td>{{data.borrowDate}}</td>
+      <td>{{data.ReturnDate}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
